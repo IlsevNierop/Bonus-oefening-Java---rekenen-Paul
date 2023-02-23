@@ -1,8 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
-//
+//Assignment:
 //    schrijf een klein rekenoefening programma die rekensommen maakt en om een input vraagt en de input checkt met het correcte antwoord.
 //    # bouw een applicatie die twee random nummers uit print.# en hier een som van maakt.
 //    # vervolgens moet deze om een invoer vragen en checken of de invoer klopt met de gegeven som.
@@ -13,9 +12,9 @@ public class Main {
 //    # Bonus: bouw een punten systeem erbij voor goede antwoorden en foute antwoorden.
 //    # Bonus: schrijf de functie zo dat je zelf kan ingeven hoe hoog de getalen mogen zijn
 
+public class Main {
 
     public static void main(String[] args) {
-
 
         Random rand = new Random();
         Scanner myScanner = new Scanner(System.in);
