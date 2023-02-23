@@ -21,12 +21,15 @@ public class Main {
         Scanner myScanner = new Scanner(System.in);
 
 
-        //The Game
-
         System.out.println("Let's go do some calculations. I will pick two random numbers and add these to a calculation. You will have to calculate the result.\nFor every right answer you will get 5 points, and for every wrong answer 2 points will be deducted.");
         int rounds = askForRounds(myScanner);
         int upperbound = askForMaxNum(myScanner);
+
+        System.out.println(randNum1.randNum);
+        System.out.println(randNum2.randNum);
+
         System.out.println("You want to play " + rounds + " rounds and the numbers will be max " + upperbound + ". Let's go!");
+
         int playedRounds = 0;
         int score = 0;
         while (playedRounds < rounds) {
@@ -36,49 +39,30 @@ public class Main {
             } else {
                 System.out.println("Round " + ++playedRounds);
             }
-
-            int randNum1 = getRandomNumber(rand, upperbound);
-            int randNum2 = getRandomNumber(rand, upperbound);
-            String operator = getRandomOperator(rand);
-
-            int result = doCalculation(randNum1, randNum2, operator);
+            GetRandoms randNum1 = new GetRandoms(GetRandoms.getRandomNumber(rand, upperbound));
+            GetRandoms randNum2 = new GetRandoms(GetRandoms.getRandomNumber(rand, upperbound));
+            GetRandoms randOperator = new GetRandoms(GetRandoms.getRandomOperator(rand));
+            int result = doCalculation(randNum1.randNum, randNum2.randNum, randOperator.randOperator);
 
             boolean inputResultIsResult = false;
-            System.out.println("What do you think is the result?");
-            while (!inputResultIsResult) {
-                int inputResult = askForResult(myScanner, result);
-                inputResultIsResult = checkResult(result, inputResult, playedRounds, rounds, score);
-                score = calculateScore(inputResultIsResult, score);
-                if ((playedRounds) == rounds){
-                    System.out.println("Your final score is " + score + " points.");
-                }
-                else {
-                    System.out.println("Your current score is " + score + " points.");
-                }
-            }
+//            System.out.println("What do you think is the result?");
+//            while (!inputResultIsResult) {
+//                int inputResult = askForResult(myScanner, result);
+//                inputResultIsResult = checkResult(result, inputResult, playedRounds, rounds, score);
+//                score = calculateScore(inputResultIsResult, score);
+//                if ((playedRounds) == rounds){
+//                    System.out.println("Your final score is " + score + " points.");
+//                }
+//                else {
+//                    System.out.println("Your current score is " + score + " points.");
+//                }
+//            }
 
         }
 
     }
 
-    public static int getRandomNumber(Random rand, int upperbound) {
 
-        int randNum = rand.nextInt(1, upperbound);
-
-        return randNum;
-
-    }
-
-    public static String getRandomOperator(Random rand) {
-        String[] operators = {"+", "-", "/", "*"};
-        int operatorIndex = rand.nextInt(0, 4);
-
-        String randOperator = operators[operatorIndex];
-
-        return randOperator;
-
-
-    }
 
     public static int doCalculation(int randNum1, int randNum2, String operator) {
         int result1 = 0;
